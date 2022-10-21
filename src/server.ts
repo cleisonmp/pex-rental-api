@@ -1,11 +1,11 @@
 import express from 'express'
-import { categoriesRoutes } from './routes/category'
+import { routes } from './routes'
 
 const app = express()
 
 app.use(express.json())
 
-app.use('/api/categories', categoriesRoutes)
+app.use(routes)
 
 app.listen(3333, () => {
   console.log('Server is running')
