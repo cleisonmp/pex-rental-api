@@ -1,6 +1,6 @@
 import { create, getByName } from '../../models/Category'
 
-interface CreateCategoryProps {
+export interface CreateCategoryProps {
   name: string
   description: string
 }
