@@ -1,11 +1,11 @@
 import { categoriesDB } from '.'
 
-export const getAllCategories = () => {
+export const getAll = () => {
   return categoriesDB
 }
-export const getCategoryByName = (name: string) => {
+export const getByName = (name: string) => {
   return categoriesDB.find((category) => category.name === name)
 }
-export const getCategoryById = (id: string) => {
+/*export const getById = (id: string) => {
   return categoriesDB.find((category) => category.id === id)
-}
+}*/

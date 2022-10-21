@@ -4,3 +4,8 @@ export interface Category {
   description: string
   created_at: Date
 }
+
+export const categoriesDB: Category[] = []
+
+export * from './create'
+export * from './get'
