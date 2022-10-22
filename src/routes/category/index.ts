@@ -33,7 +33,7 @@ categoriesRoutes.get('/:name?', (req, res) => {
   } catch (error) {
     const { message } = error as Error
 
-    return res.status(400).json({ error: message })
+    return res.status(404).json({ error: message })
     //next(error)
   }
 })

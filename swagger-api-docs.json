@@ -1,0 +1,165 @@
+{
+  "openapi": "3.0.0",
+  "swagger": "4.5.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Pex Rental - API Documentation",
+    "description": "You can find out more about this project at [https://github.com/cleisonmp/pex-rental-api](https://github.com/cleisonmp/pex-rental-api).",
+    "contact": {
+      "email": "cleison@outlook.com"
+    },
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "host": "https://pex-rental.vercel.app/",
+  "basePath": "/api",
+  "schemes": ["http", "https"],
+  "consumes": ["application/json"],
+  "produces": ["application/json"],
+  "tags": [
+    {
+      "name": "Categories",
+      "description": "Categories list maintenance  and info"
+    },
+    {
+      "name": "Features",
+      "description": "Features list maintenance and info"
+    },
+    {
+      "name": "Customer",
+      "description": "Operations about customers"
+    }
+  ],
+  "paths": {
+    "/api/categories/": {
+      "post": {
+        "tags": ["Categories"],
+        "summary": "Create a new category",
+        "description": "Create a new category",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  }
+                },
+                "example": {
+                  "name": "Sample category name",
+                  "description": "Sample description of a category"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Category successfully created"
+          },
+          "400": {
+            "description": "Category already exists"
+          }
+        }
+      }
+    },
+    "/api/categories/{name?}": {
+      "get": {
+        "tags": ["Categories"],
+        "description": "List categories according to parameters",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "description": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Category not found"
+          }
+        }
+      }
+    },
+    "/api/categories/import": {
+      "post": {
+        "tags": ["Categories"],
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/api/features/": {
+      "post": {
+        "tags": ["Features"],
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/api/features/{name?}": {
+      "get": {
+        "tags": ["Features"],
+        "description": "",
+        "parameters": [
+          {
+            "name": "name?",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    }
+  }
+}
