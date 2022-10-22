@@ -1,7 +1,9 @@
 import express from 'express'
 import { routes } from './routes'
 import swaggerUi from 'swagger-ui-express'
+
 import swaggerFile from '../swagger-api-docs.json'
+import './database'
 
 const app = express()
 
@@ -12,5 +14,5 @@ app.use(routes)
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerFile))
 
 app.listen(3333, () => {
-  console.log('Server is running')
+  console.log('Server is running.')
 })
