@@ -19,6 +19,7 @@ const loadCategories = (
         newCategories.push({ name, description })
       })
       .on('end', () => {
+        fs.promises.unlink(file.path)
         resolve(newCategories)
       })
       .on('error', (error) => {
