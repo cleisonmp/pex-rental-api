@@ -112,11 +112,29 @@
     "/api/categories/import": {
       "post": {
         "tags": ["Categories"],
-        "description": "",
+        "description": "Imports categories using a csv file with delimiter: ';' one line per category",
         "parameters": [],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "file"
+                  }
+                },
+                "example": {
+                  "file": "Sample category name",
+                  "content": "Sedan;Sedan description"
+                }
+              }
+            }
+          }
+        },
         "responses": {
           "201": {
-            "description": "Created"
+            "description": "Created without errors, or with and error list"
           },
           "400": {
             "description": "Bad Request"
