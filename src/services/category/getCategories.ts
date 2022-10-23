@@ -1,7 +1,7 @@
 import { getAll, getByName } from '../../models/Category'
 
-export const getAllCategories = () => {
-  const categories = getAll()
+export const getAllCategories = async () => {
+  const categories = await getAll()
 
   if (!categories || categories.length <= 0) {
     throw new Error(`No category was found`)
@@ -9,8 +9,8 @@ export const getAllCategories = () => {
 
   return categories
 }
-export const getCategoryByName = (name: string) => {
-  const category = getByName(name)
+export const getCategoryByName = async (name: string) => {
+  const category = await getByName(name)
 
   if (!category) {
     throw new Error(`Category ${name} not found`)
@@ -18,6 +18,3 @@ export const getCategoryByName = (name: string) => {
 
   return category
 }
-/*export const getCategoryById = (id: string) => {
-  return getById(id)
-}*/

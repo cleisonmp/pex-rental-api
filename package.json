@@ -12,7 +12,8 @@
     "dev": "ts-node-dev --poll --inspect --transpile-only --ignore-watch node_modules --respawn src/server.ts",
     "devu": "tsnd --inspect --ignore-watch node_modules --respawn --transpile-only src/server.ts",
     "prettier": "prettier --write .",
-    "lint": "eslint . --ext .ts"
+    "lint": "eslint . --ext .ts",
+    "typeorm": "ts-node-dev ./node_modules/typeorm/cli"
   },
   "devDependencies": {
     "@types/express": "^4.17.14",

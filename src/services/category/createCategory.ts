@@ -5,9 +5,12 @@ export interface CreateCategoryProps {
   description: string
 }
 
-export const createCategory = ({ name, description }: CreateCategoryProps) => {
-  if (!getByName(name)) {
-    create({ name, description })
+export const createCategory = async ({
+  name,
+  description,
+}: CreateCategoryProps) => {
+  if (!(await getByName(name))) {
+    await create({ name, description })
   } else {
     throw new Error(`Category ${name} already exists`)
   }

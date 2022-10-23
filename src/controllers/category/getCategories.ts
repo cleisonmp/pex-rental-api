@@ -2,10 +2,10 @@ import { Request } from 'express'
 
 import { getAllCategories, getCategoryByName } from '../../services/category'
 
-export const getCategoriesController = (req: Request) => {
+export const getCategoriesController = async (req: Request) => {
   if (req.params.name) {
-    return getCategoryByName(req.params.name)
+    return await getCategoryByName(req.params.name)
   } else {
-    return getAllCategories()
+    return await getAllCategories()
   }
 }

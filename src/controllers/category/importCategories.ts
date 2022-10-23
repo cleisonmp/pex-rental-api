@@ -6,9 +6,9 @@ export const importCategoriesController = async (req: Request) => {
 
   if (file) {
     const errorList = await importCategories(file)
+
     if (errorList.length > 0) {
       return { state: 'Import finished with errors', errors: errorList }
-      //throw new Error('Import finishes with errors: '+)
     } else {
       return { state: 'Import finished without errors' }
     }

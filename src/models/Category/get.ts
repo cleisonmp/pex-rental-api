@@ -1,11 +1,11 @@
-import { categoriesDB } from '.'
+import { getRepository } from 'typeorm'
+import { Category } from '.'
 
-export const getAll = () => {
-  return categoriesDB
+export const getAll = async () => {
+  const repository = getRepository(Category)
+  return await repository.find()
 }
-export const getByName = (name: string) => {
-  return categoriesDB.find((category) => category.name === name)
+export const getByName = async (name: string) => {
+  const repository = getRepository(Category)
+  return await repository.findOne({ name })
 }
-/*export const getById = (id: string) => {
-  return categoriesDB.find((category) => category.id === id)
-}*/

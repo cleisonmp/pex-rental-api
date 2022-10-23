@@ -1,11 +1,26 @@
-export interface Category {
-  id: string
-  name: string
-  description: string
-  created_at: Date
-}
+import { Column, CreateDateColumn, Entity, PrimaryColumn } from 'typeorm'
+import { v4 as uuidV4 } from 'uuid'
 
-export const categoriesDB: Category[] = []
+@Entity('categories')
+export class Category {
+  @PrimaryColumn()
+  id?: string
+
+  @Column()
+  name!: string
+
+  @Column()
+  description!: string
+
+  @CreateDateColumn()
+  created_at!: Date
+
+  constructor() {
+    if (!this.id) {
+      this.id = uuidV4()
+    }
+  }
+}
 
 export * from './create'
 export * from './get'
