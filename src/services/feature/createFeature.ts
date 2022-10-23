@@ -1,13 +1,16 @@
 import { create, getByName } from '../../models/Feature'
 
-interface CreateFeatureProps {
+export interface CreateFeatureProps {
   name: string
   description: string
 }
 
-export const createFeature = ({ name, description }: CreateFeatureProps) => {
-  if (!getByName(name)) {
-    create({ name, description })
+export const createFeature = async ({
+  name,
+  description,
+}: CreateFeatureProps) => {
+  if (!(await getByName(name))) {
+    await create({ name, description })
   } else {
     throw new Error(`Feature ${name} already exists`)
   }

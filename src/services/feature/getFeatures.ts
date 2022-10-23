@@ -1,7 +1,7 @@
 import { getAll, getByName } from '../../models/Feature'
 
-export const getAllFeatures = () => {
-  const features = getAll()
+export const getAllFeatures = async () => {
+  const features = await getAll()
 
   if (!features || features.length <= 0) {
     throw new Error(`No feature was found`)
@@ -9,8 +9,8 @@ export const getAllFeatures = () => {
 
   return features
 }
-export const getFeatureByName = (name: string) => {
-  const feature = getByName(name)
+export const getFeatureByName = async (name: string) => {
+  const feature = await getByName(name)
 
   if (!feature) {
     throw new Error(`Feature ${name} not found`)

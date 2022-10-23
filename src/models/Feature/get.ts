@@ -1,8 +1,11 @@
-import { featuresDB } from '.'
+import { getRepository } from 'typeorm'
+import { Feature } from '.'
 
-export const getAll = () => {
-  return featuresDB
+export const getAll = async () => {
+  const repository = getRepository(Feature)
+  return await repository.find()
 }
-export const getByName = (name: string) => {
-  return featuresDB.find((category) => category.name === name)
+export const getByName = async (name: string) => {
+  const repository = getRepository(Feature)
+  return await repository.findOne({ name })
 }

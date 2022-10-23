@@ -1,11 +1,26 @@
-export interface Feature {
-  id: string
-  name: string
-  description: string
-  created_at: Date
-}
+import { Column, CreateDateColumn, Entity, PrimaryColumn } from 'typeorm'
+import { v4 as uuidV4 } from 'uuid'
 
-export const featuresDB: Feature[] = []
+@Entity('features')
+export class Feature {
+  @PrimaryColumn()
+  id?: string
+
+  @Column()
+  name!: string
+
+  @Column()
+  description!: string
+
+  @CreateDateColumn()
+  created_at!: Date
+
+  constructor() {
+    if (!this.id) {
+      this.id = uuidV4()
+    }
+  }
+}
 
 export * from './create'
 export * from './get'

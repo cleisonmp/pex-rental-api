@@ -1,17 +1,15 @@
-import { v4 as uuidV4 } from 'uuid'
+import { getRepository } from 'typeorm'
 
-import { featuresDB } from '.'
+import { Feature } from '.'
 
 interface CreateFeatureProps {
   name: string
   description: string
 }
 
-export const create = ({ name, description }: CreateFeatureProps) => {
-  featuresDB.push({
-    id: uuidV4(),
-    name,
-    description,
-    created_at: new Date(),
-  })
+export const create = async ({ name, description }: CreateFeatureProps) => {
+  const repository = getRepository(Feature)
+  const category = repository.create({ name, description })
+
+  await repository.save(category)
 }

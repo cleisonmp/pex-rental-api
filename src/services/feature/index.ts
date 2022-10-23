@@ -1,2 +1,3 @@
 export * from './createFeature'
-export * from './getFeature'
+export * from './getFeatures'
+export * from './importFeatures'
