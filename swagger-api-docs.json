@@ -145,14 +145,35 @@
     "/api/features/": {
       "post": {
         "tags": ["Features"],
-        "description": "",
-        "parameters": [],
+        "summary": "Create a new feature",
+        "description": "Create a new feature",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  }
+                },
+                "example": {
+                  "name": "Sample feature name",
+                  "description": "Sample description of a feature"
+                }
+              }
+            }
+          }
+        },
         "responses": {
           "201": {
-            "description": "Created"
+            "description": "Feature successfully created"
           },
           "400": {
-            "description": "Bad Request"
+            "description": "Feature ${name} already exists"
           }
         }
       }
@@ -160,18 +181,69 @@
     "/api/features/{name?}": {
       "get": {
         "tags": ["Features"],
-        "description": "",
+        "description": "List features according to parameters",
         "parameters": [
           {
-            "name": "name?",
+            "name": "name",
             "in": "path",
-            "required": true,
+            "required": false,
             "type": "string"
           }
         ],
         "responses": {
-          "200": {
-            "description": "OK"
+          "201": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "description": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Feature not found"
+          }
+        }
+      }
+    },
+    "/api/features/import": {
+      "post": {
+        "tags": ["Features"],
+        "description": "Imports features using a csv file with delimiter: ';' one line per feature",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "file"
+                  }
+                },
+                "example": {
+                  "file": "Sample feature name",
+                  "content": "Automatic;Automatic transmission"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created without errors, or with and error list"
           },
           "400": {
             "description": "Bad Request"
