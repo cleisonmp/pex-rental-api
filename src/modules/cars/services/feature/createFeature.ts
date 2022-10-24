@@ -1,3 +1,4 @@
+import { ApiError } from '../../../../errors/ApiError'
 import { create, CreateFeatureProps, getByName } from '../../models/Feature'
 
 export const createFeature = async ({
@@ -7,6 +8,6 @@ export const createFeature = async ({
   if (!(await getByName(name))) {
     await create({ name, description })
   } else {
-    throw new Error(`Feature ${name} already exists`)
+    throw new ApiError(`Feature ${name} already exists`, 409)
   }
 }

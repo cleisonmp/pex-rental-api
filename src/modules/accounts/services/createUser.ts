@@ -1,3 +1,4 @@
+import { ApiError } from '../../../errors/ApiError'
 import { getHash } from '../../../utils/hashGenerator'
 import { create, CreateUserProps, getByEmail } from '../models'
 
@@ -6,6 +7,6 @@ export const createUser = async (user: CreateUserProps) => {
     const userWithPassHash = { ...user, password: await getHash(user.password) }
     await create(userWithPassHash)
   } else {
-    throw new Error(`Email ${user.email} already exists`)
+    throw new ApiError(`Email ${user.email} already exists`, 409)
   }
 }

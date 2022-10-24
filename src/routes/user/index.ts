@@ -7,26 +7,12 @@ import {
 export const usersRoutes = Router()
 
 usersRoutes.post('/', async (req, res) => {
-  try {
-    await createUserController(req)
+  await createUserController(req)
 
-    return res.status(201).send()
-  } catch (error) {
-    const { message } = error as Error
-
-    return res.status(400).json({ error: message })
-    //next(error)
-  }
+  return res.status(201).send()
 })
 usersRoutes.get('/:email?', async (req, res) => {
-  try {
-    const result = await getUsersController(req)
+  const result = await getUsersController(req)
 
-    return res.status(200).json(result)
-  } catch (error) {
-    const { message } = error as Error
-
-    return res.status(400).json({ error: message })
-    //next(error)
-  }
+  return res.status(200).json(result)
 })

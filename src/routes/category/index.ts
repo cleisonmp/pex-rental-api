@@ -16,40 +16,23 @@ const upload = multer({
 categoriesRoutes.use(checkAuthentication)
 
 categoriesRoutes.post('/', async (req, res) => {
-  try {
-    await createCategoryController(req)
+  await createCategoryController(req)
 
-    return res.status(201).send()
-  } catch (error) {
-    const { message } = error as Error
-
-    return res.status(400).json({ error: message })
-    //next(error)
-  }
+  return res.status(201).send()
 })
 
 categoriesRoutes.get('/:name?', async (req, res) => {
-  try {
-    const result = await getCategoriesController(req)
+  const result = await getCategoriesController(req)
 
-    return res.status(200).json(result)
-  } catch (error) {
-    const { message } = error as Error
-
-    return res.status(404).json({ error: message })
-    //next(error)
-  }
+  return res.status(200).json(result)
 })
 
 categoriesRoutes.post('/import', upload.single('file'), async (req, res) => {
-  try {
-    const result = await importCategoriesController(req)
+  const result = await importCategoriesController(req)
 
-    return res.status(201).json(result)
-  } catch (error) {
-    const { message } = error as Error
-
-    return res.status(400).json({ error: message })
-    //next(error)
+  if (result.errors) {
+    return res.status(409).json(result)
   }
+
+  return res.status(201).json()
 })

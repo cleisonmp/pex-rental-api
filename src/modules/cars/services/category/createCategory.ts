@@ -1,3 +1,4 @@
+import { ApiError } from '../../../../errors/ApiError'
 import { create, CreateCategoryProps, getByName } from '../../models/Category'
 
 export const createCategory = async ({
@@ -7,6 +8,6 @@ export const createCategory = async ({
   if (!(await getByName(name))) {
     await create({ name, description })
   } else {
-    throw new Error(`Category ${name} already exists`)
+    throw new ApiError(`Category ${name} already exists`, 409)
   }
 }

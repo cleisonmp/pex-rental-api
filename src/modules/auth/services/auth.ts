@@ -1,16 +1,17 @@
 import { compare } from 'bcryptjs'
 import { generateJwtAndRefreshToken } from '.'
+import { ApiError } from '../../../errors/ApiError'
 import { getByEmail } from '../../accounts/models'
 
 export const checkUserCredentials = async (email: string, password: string) => {
   const user = await getByEmail(email)
   if (!user) {
-    throw new Error('Invalid user credentials.')
+    throw new ApiError('Invalid user credentials.', 401)
   }
   const passwordIsCorrect = await compare(password, user.password)
 
   if (!passwordIsCorrect) {
-    throw new Error('Invalid user credentials.')
+    throw new ApiError('Invalid user credentials.', 401)
   }
   return {
     name: user.name,

@@ -1,6 +1,7 @@
 import jwt from 'jsonwebtoken'
 import jwtDecode from 'jwt-decode'
 import { v4 as uuidV4 } from 'uuid'
+import { ApiError } from '../../../errors/ApiError'
 
 interface GenerateJwtAndRefreshTokenProps {
   email: string
@@ -28,7 +29,7 @@ export const getTokenEmail = (authorizationToken: string) => {
 
     return { email: tokenData.sub }
   } catch (error) {
-    throw new Error('Invalid token format.')
+    throw new ApiError('Invalid token format.', 401)
   }
 }
 
@@ -44,7 +45,7 @@ export const verifyToken = (authorizationToken: string): TokenContent => {
       email: tokenData.sub,
     }
   } catch (error) {
-    throw new Error('Token expired.')
+    throw new ApiError('Token expired.', 401)
   }
 }
 
@@ -72,7 +73,7 @@ export const checkRefreshTokenIsValid = async (
 
     return isRefreshTokenValid
   } catch (error) {
-    throw new Error('Refresh token is invalid.')
+    throw new ApiError('Refresh token is invalid.', 401)
   }
 }
 

@@ -1,10 +1,11 @@
+import { ApiError } from '../../../errors/ApiError'
 import { getAll, getByEmail } from '../models'
 
 export const getAllUsers = async () => {
   const users = await getAll()
 
   if (!users || users.length <= 0) {
-    throw new Error(`No user was found`)
+    throw new ApiError(`No user was found`, 404)
   }
 
   return users
@@ -13,7 +14,7 @@ export const getUserByEmail = async (email: string) => {
   const user = await getByEmail(email)
 
   if (!user) {
-    throw new Error(`User with email ${email} not found`)
+    throw new ApiError(`User with email ${email} not found`, 404)
   }
   const returnUserInfo = {
     id: user.id,

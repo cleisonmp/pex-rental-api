@@ -1,10 +1,11 @@
+import { ApiError } from '../../../../errors/ApiError'
 import { getAll, getByName } from '../../models/Feature'
 
 export const getAllFeatures = async () => {
   const features = await getAll()
 
   if (!features || features.length <= 0) {
-    throw new Error(`No feature was found`)
+    throw new ApiError(`No feature was found`, 404)
   }
 
   return features
@@ -13,7 +14,7 @@ export const getFeatureByName = async (name: string) => {
   const feature = await getByName(name)
 
   if (!feature) {
-    throw new Error(`Feature ${name} not found`)
+    throw new ApiError(`Feature ${name} not found`, 404)
   }
 
   return feature

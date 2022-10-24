@@ -15,38 +15,21 @@ const upload = multer({
 featuresRoutes.use(checkAuthentication)
 
 featuresRoutes.post('/', async (req, res) => {
-  try {
-    await createFeatureController(req)
+  await createFeatureController(req)
 
-    return res.status(201).send()
-  } catch (error) {
-    const { message } = error as Error
-
-    return res.status(400).json({ error: message })
-    //next(error)
-  }
+  return res.status(201).send()
 })
 featuresRoutes.get('/:name?', async (req, res) => {
-  try {
-    const result = await getFeaturesController(req)
+  const result = await getFeaturesController(req)
 
-    return res.status(200).json(result)
-  } catch (error) {
-    const { message } = error as Error
-
-    return res.status(400).json({ error: message })
-    //next(error)
-  }
+  return res.status(200).json(result)
 })
 featuresRoutes.post('/import', upload.single('file'), async (req, res) => {
-  try {
-    const result = await importFeaturesController(req)
+  const result = await importFeaturesController(req)
 
-    return res.status(201).json(result)
-  } catch (error) {
-    const { message } = error as Error
-
-    return res.status(400).json({ error: message })
-    //next(error)
+  if (result.errors) {
+    return res.status(409).json(result)
   }
+
+  return res.status(201).json()
 })
