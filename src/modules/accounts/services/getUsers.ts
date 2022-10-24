@@ -15,6 +15,13 @@ export const getUserByEmail = async (email: string) => {
   if (!user) {
     throw new Error(`User with email ${email} not found`)
   }
-
-  return user
+  const returnUserInfo = {
+    id: user.id,
+    name: user.name,
+    email: user.email,
+    drivers_license: user.drivers_license,
+    isAdmin: user.isAdmin,
+    created_at: user.created_at,
+  }
+  return returnUserInfo
 }
