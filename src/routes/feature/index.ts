@@ -1,5 +1,6 @@
 import { Router } from 'express'
 import multer from 'multer'
+import { checkAuthentication } from '../../middlewares'
 import {
   createFeatureController,
   getFeaturesController,
@@ -10,6 +11,8 @@ export const featuresRoutes = Router()
 const upload = multer({
   dest: './tmp',
 })
+
+featuresRoutes.use(checkAuthentication)
 
 featuresRoutes.post('/', async (req, res) => {
   try {

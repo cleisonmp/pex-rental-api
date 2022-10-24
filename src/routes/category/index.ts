@@ -1,5 +1,6 @@
 import { Router } from 'express'
 import multer from 'multer'
+import { checkAuthentication } from '../../middlewares'
 
 import {
   createCategoryController,
@@ -11,6 +12,8 @@ export const categoriesRoutes = Router()
 const upload = multer({
   dest: './tmp',
 })
+
+categoriesRoutes.use(checkAuthentication)
 
 categoriesRoutes.post('/', async (req, res) => {
   try {

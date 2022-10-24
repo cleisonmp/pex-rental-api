@@ -2,29 +2,27 @@ import jwt from 'jsonwebtoken'
 import jwtDecode from 'jwt-decode'
 import { v4 as uuidV4 } from 'uuid'
 
-export interface GenerateJwtAndRefreshTokenProps {
+interface GenerateJwtAndRefreshTokenProps {
   email: string
   payload: { isAdmin: boolean }
   userRefreshToken: string
 }
 
-export interface DecodedToken {
-  permissions: string[]
-  role: string
+interface DecodedToken {
+  isAdmin: boolean
   iat: number
   exp: number
   sub: string
 }
 
-export interface TokenContent {
+interface TokenContent {
   email: string
-  permissions?: string[]
-  role?: string
+  isAdmin: boolean
 }
 
 //TODO: refreshToken
 
-export const getTokenEmail = (authorizationToken: string): TokenContent => {
+export const getTokenEmail = (authorizationToken: string) => {
   try {
     const tokenData = jwtDecode(authorizationToken) as DecodedToken
 
@@ -42,8 +40,7 @@ export const verifyToken = (authorizationToken: string): TokenContent => {
     ) as DecodedToken
 
     return {
-      permissions: tokenData.permissions,
-      role: tokenData.role,
+      isAdmin: tokenData.isAdmin,
       email: tokenData.sub,
     }
   } catch (error) {
