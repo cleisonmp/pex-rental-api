@@ -4,8 +4,8 @@ import multer from 'multer'
 import {
   createCategoryController,
   getCategoriesController,
-} from '../../controllers/category'
-import { importCategoriesController } from '../../controllers/category/importCategories'
+} from '../../modules/cars/controllers/category'
+import { importCategoriesController } from '../../modules/cars/controllers/category/importCategories'
 
 export const categoriesRoutes = Router()
 const upload = multer({

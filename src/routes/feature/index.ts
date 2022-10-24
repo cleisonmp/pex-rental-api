@@ -4,7 +4,7 @@ import {
   createFeatureController,
   getFeaturesController,
   importFeaturesController,
-} from '../../controllers/feature'
+} from '../../modules/cars/controllers/feature'
 
 export const featuresRoutes = Router()
 const upload = multer({
