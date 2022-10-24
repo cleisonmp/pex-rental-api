@@ -8,7 +8,6 @@ export const errorHandler = async (
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   _next: NextFunction,
 ) => {
-  console.log('=======errorHandler=======')
   if (error instanceof ApiError) {
     return res.status(error.statusCode).json({
       message: error.message,
