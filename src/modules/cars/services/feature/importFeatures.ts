@@ -1,6 +1,7 @@
 import fs from 'fs'
 import { parse } from 'csv-parse'
-import { createFeature, CreateFeatureProps } from '.'
+import { createFeature } from '.'
+import { CreateFeatureProps } from '../../models/Feature'
 
 const loadFeatures = (
   file: Express.Multer.File,

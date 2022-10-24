@@ -2,10 +2,7 @@ import { getRepository } from 'typeorm'
 
 import { Category } from '.'
 
-interface CreateCategoryProps {
-  name: string
-  description: string
-}
+export type CreateCategoryProps = Omit<Category, 'id' | 'created_at'>
 
 export const create = async ({ name, description }: CreateCategoryProps) => {
   const repository = getRepository(Category)

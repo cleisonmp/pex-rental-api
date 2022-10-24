@@ -1,9 +1,4 @@
-import { create, getByName } from '../../models/Category'
-
-export interface CreateCategoryProps {
-  name: string
-  description: string
-}
+import { create, CreateCategoryProps, getByName } from '../../models/Category'
 
 export const createCategory = async ({
   name,

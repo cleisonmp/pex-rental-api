@@ -1,6 +1,7 @@
 import fs from 'fs'
 import { parse } from 'csv-parse'
-import { createCategory, CreateCategoryProps } from './createCategory'
+import { CreateCategoryProps } from '../../models/Category'
+import { createCategory } from './createCategory'
 
 const loadCategories = (
   file: Express.Multer.File,

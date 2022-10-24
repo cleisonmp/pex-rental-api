@@ -1,9 +1,4 @@
-import { create, getByName } from '../../models/Feature'
-
-export interface CreateFeatureProps {
-  name: string
-  description: string
-}
+import { create, CreateFeatureProps, getByName } from '../../models/Feature'
 
 export const createFeature = async ({
   name,
