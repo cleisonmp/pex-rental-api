@@ -1,4 +1,5 @@
 import { ApiError } from '../../../../errors/ApiError'
+import { deleFile } from '../../../../utils/file'
 import { getByEmail, updateAvatar } from '../../models/user'
 
 interface UpdateAvatarProps {
@@ -16,4 +17,5 @@ export const updateAvatarService = async ({
     throw new ApiError(`User with email ${email} not found`, 404)
   }
   await updateAvatar(email, avatarFileName)
+  await deleFile('./_files/avatar/', user.avatar ?? '')
 }
