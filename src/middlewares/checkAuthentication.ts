@@ -28,7 +28,7 @@ export const checkAuthentication = async (
     throw new ApiError('Invalid token.', 401)
   }
 
-  //req.user = tokenUserInfo
-  console.log('user', user)
+  req.userInfo = user
+
   await next()
 }
