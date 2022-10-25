@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express'
 import { ApiError } from '../errors/ApiError'
-import { getByEmail } from '../modules/accounts/models'
+import { getByEmail } from '../modules/accounts/models/user'
 import { verifyToken } from '../modules/auth/services'
 
 export const checkAuthentication = async (

@@ -1,6 +1,6 @@
-import { ApiError } from '../../../errors/ApiError'
-import { getHash } from '../../../utils/hashGenerator'
-import { create, CreateUserProps, getByEmail } from '../models'
+import { ApiError } from '../../../../errors/ApiError'
+import { getHash } from '../../../../utils/hashGenerator'
+import { create, CreateUserProps, getByEmail } from '../../models/user'
 
 export const createUser = async (user: CreateUserProps) => {
   if (!(await getByEmail(user.email))) {

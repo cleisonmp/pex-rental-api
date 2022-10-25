@@ -1,5 +1,5 @@
-import { ApiError } from '../../../errors/ApiError'
-import { getAll, getByEmail } from '../models'
+import { ApiError } from '../../../../errors/ApiError'
+import { getAll, getByEmail } from '../../models/user'
 
 export const getAllUsers = async () => {
   const users = await getAll()

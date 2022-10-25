@@ -1,7 +1,7 @@
 import { compare } from 'bcryptjs'
 import { generateJwtAndRefreshToken } from '.'
 import { ApiError } from '../../../errors/ApiError'
-import { getByEmail } from '../../accounts/models'
+import { getByEmail } from '../../accounts/models/user'
 
 export const checkUserCredentials = async (email: string, password: string) => {
   const user = await getByEmail(email)

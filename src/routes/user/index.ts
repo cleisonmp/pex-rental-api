@@ -2,7 +2,7 @@ import { Router } from 'express'
 import {
   createUserController,
   getUsersController,
-} from '../../modules/accounts/controllers'
+} from '../../modules/accounts/controllers/user'
 
 export const usersRoutes = Router()
 

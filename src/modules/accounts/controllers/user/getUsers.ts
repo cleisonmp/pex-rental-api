@@ -1,5 +1,5 @@
 import { Request } from 'express'
-import { getAllUsers, getUserByEmail } from '../services'
+import { getAllUsers, getUserByEmail } from '../../services/user'
 
 export const getUsersController = async (req: Request) => {
   if (req.params.email) {
