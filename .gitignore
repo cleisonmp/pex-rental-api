@@ -27,3 +27,6 @@ yarn-error.log*
 
 # temp files
 /tmp
+
+#uploaded files
+/_files

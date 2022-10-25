@@ -25,10 +25,9 @@ export class User {
   @CreateDateColumn()
   created_at!: Date
 
-  /*
   @Column()
-  avatar!: string
-
+  avatar?: string
+  /*
   @Expose({ name: 'avatar_url' })
   avatar_url(): string {
     switch (process.env.disk) {
@@ -50,3 +49,4 @@ export class User {
 
 export * from './create'
 export * from './get'
+export * from './update'

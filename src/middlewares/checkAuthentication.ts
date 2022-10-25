@@ -29,6 +29,6 @@ export const checkAuthentication = async (
   }
 
   //req.user = tokenUserInfo
-
+  console.log('user', user)
   await next()
 }

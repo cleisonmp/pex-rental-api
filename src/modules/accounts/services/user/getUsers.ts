@@ -16,11 +16,13 @@ export const getUserByEmail = async (email: string) => {
   if (!user) {
     throw new ApiError(`User with email ${email} not found`, 404)
   }
+
   const returnUserInfo = {
     id: user.id,
     name: user.name,
     email: user.email,
     drivers_license: user.drivers_license,
+    avatar: user.avatar,
     isAdmin: user.isAdmin,
     created_at: user.created_at,
   }
